@@ -23,11 +23,18 @@ for row in string_data:
     ]
     all_labels.append(new_row)
 
-train_data = all_data[:1000]
+train_data_orig = all_data[:1000]
 train_labels = all_labels[:1000]
 
-test_data = all_data[1000:]
+
+test_data_orig = all_data[1000:]
 test_labels = all_labels[1000:]
 
+mean = train_data_orig.mean(axis=0)
+std = train_data_orig.std(axis=0)
+
+train_data = (train_data_orig - mean) / std
+test_data = (test_data_orig - mean) / std
+
 def get_data():
-    return (train_data, train_labels), (test_data, test_labels)
+    return (test_data_orig, train_labels), (test_data_orig, test_labels)
