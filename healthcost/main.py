@@ -9,7 +9,7 @@ from tensorflow import keras
 print(train_data)
 print(train_labels)
 
-model.build_model(train_data)
+model = model.build_model(train_data)
 model.summary()
 
 EPOCHS = 500
@@ -20,10 +20,14 @@ class PrintDot(keras.callbacks.Callback):
     if epoch % 100 == 0: print('')
     print('.', end='')
 
-early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=20)
 history_results = model.fit(train_data, train_labels, epochs=EPOCHS,
                     validation_split=0.2, verbose=0,
-                    callbacks=[early_stop, PrintDot()])
+                    callbacks=[PrintDot()])
+
+# early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=20)
+# history_results = model.fit(train_data, train_labels, epochs=EPOCHS,
+#                     validation_split=0.2, verbose=0,
+#                     callbacks=[early_stop, PrintDot()])
 
 [loss, mae] = model.evaluate(test_data, test_labels, verbose=0)
 
