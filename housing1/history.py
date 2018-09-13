@@ -11,6 +11,5 @@ def plot_history(history):
   plt.plot(history.epoch, np.array(history.history['val_mean_absolute_error']),
            label = 'Val loss')
   plt.legend()
-  plt.ylim([0, 5])
   plt.show()
 
