@@ -5,7 +5,7 @@ all_data = []
 all_labels = []
 
 string_data = []
-with open('insurance.csv', 'rt') as csvfile:
+with open('data.csv', 'rt') as csvfile:
      reader = csv.reader(csvfile, delimiter=',', quotechar='|')
      for row in reader:
          string_data.append(row)
@@ -14,14 +14,14 @@ string_data = string_data[1:]
 
 for row in string_data:
     new_row = [
-        float(row[0]),
-        float(row[2])
+        float(row[46]), #AU GrLivArea - square footage
+        float(row[81]) #CD Age
     ]
     all_data.append(new_row)
 
 for row in string_data:
     new_row = [
-        float(row[6])
+        float(row[80]) #CC SalePrice
     ]
     all_labels.append(new_row)
 
